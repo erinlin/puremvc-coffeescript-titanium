@@ -3,3 +3,7 @@ tmp
 .project
 .settings/
 build/
+build.log
+CHANGELOG.txt
+LICENSE
+manifest
