@@ -15,9 +15,9 @@ MainWindow = ->
   
   label = Ti.UI.createLabel
     color: '#999'
-    text: 'I am Window 1'
+    text: 'Hello Coffeescript & Puremvc'
     font: 
-      fontSize: 20
+      fontSize: '20dp'
       fontFamily: 'Helvetica Neue'
     textAlign: 'center'
     width: 'auto'

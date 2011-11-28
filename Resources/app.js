@@ -19,9 +19,9 @@ MainWindow = function() {
   });
   label = Ti.UI.createLabel({
     color: '#999',
-    text: 'I am Window 1',
+    text: 'Hello Coffeescript & Puremvc',
     font: {
-      fontSize: 20,
+      fontSize: '20dp',
       fontFamily: 'Helvetica Neue'
     },
     textAlign: 'center',
@@ -40,7 +40,7 @@ StartupCommand = (function() {
   }
 
   StartupCommand.prototype.execute = function(note) {
-    trace('startupCommand execute!!!');
+    trace('startupCommand executed!!!');
     this.facade.registerMediator(new MainMediator('MainMediator', new MainWindow()));
     return this.sendNotification("Hello");
   };
@@ -78,7 +78,7 @@ MainMediator = (function() {
   };
 
   MainMediator.prototype.handleNotification = function(note) {
-    return trace('MainMediator got "Hello":' + note);
+    return trace('MainMediator got "Hello": ' + note);
   };
 
   MainMediator.prototype.onRegister = function() {
