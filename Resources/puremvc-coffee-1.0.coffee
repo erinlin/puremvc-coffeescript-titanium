@@ -74,8 +74,7 @@
         @view.notifyObservers note
 
     @getInstance = ->
-        instance = instance or new Facade()
-        instance
+        instance ?= new Facade()
 
     @SINGLETON_MSG = "Facade Singleton already constructed!"
 
@@ -113,7 +112,7 @@
     @SINGLETON_MSG = "Controller Singleton already constructed!"
 
     @getInstance = ->
-        instance = instance or new Controller()
+        instance ?= new Controller()
       
   ###
   Proxy
@@ -149,7 +148,7 @@
     @SINGLETON_MSG : "Model Singleton already constructed!"
   
     @getInstance : ->
-      instance = instance or new Model()
+      instance ?= new Model()
     
   ###
   View
@@ -215,7 +214,7 @@
     @SINGLETON_MSG: "View Singleton already constructed!"
   
     @getInstance: ->
-       instance = instance or new View()
+       instance ?= new View()
      
   ###
   Notification
@@ -337,4 +336,3 @@
     Notifier : Notifier
   
 ) this
-  

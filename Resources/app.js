@@ -31,6 +31,31 @@ MainWindow = function() {
   return win;
 };
 
+MainMediator = (function() {
+
+  __extends(MainMediator, Puremvc.Mediator);
+
+  function MainMediator() {
+    MainMediator.__super__.constructor.apply(this, arguments);
+  }
+
+  MainMediator.prototype.listNotificationInterests = function() {
+    return ["Hello"];
+  };
+
+  MainMediator.prototype.handleNotification = function(note) {
+    return trace('MainMediator got "Hello": ' + note);
+  };
+
+  MainMediator.prototype.onRegister = function() {
+    trace('Mediator onRegister.:' + this.getMediatorName());
+    return this.getViewComponent().open();
+  };
+
+  return MainMediator;
+
+})();
+
 StartupCommand = (function() {
 
   __extends(StartupCommand, Puremvc.SimpleCommand);
@@ -62,31 +87,6 @@ DemoProxy = (function() {
   };
 
   return DemoProxy;
-
-})();
-
-MainMediator = (function() {
-
-  __extends(MainMediator, Puremvc.Mediator);
-
-  function MainMediator() {
-    MainMediator.__super__.constructor.apply(this, arguments);
-  }
-
-  MainMediator.prototype.listNotificationInterests = function() {
-    return ["Hello"];
-  };
-
-  MainMediator.prototype.handleNotification = function(note) {
-    return trace('MainMediator got "Hello": ' + note);
-  };
-
-  MainMediator.prototype.onRegister = function() {
-    trace('Mediator onRegister.:' + this.getMediatorName());
-    return this.getViewComponent().open();
-  };
-
-  return MainMediator;
 
 })();
 

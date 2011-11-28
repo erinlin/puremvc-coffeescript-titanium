@@ -103,8 +103,7 @@ var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, par
     };
 
     Facade.getInstance = function() {
-      instance = instance || new Facade();
-      return instance;
+      return instance != null ? instance : instance = new Facade();
     };
 
     Facade.SINGLETON_MSG = "Facade Singleton already constructed!";
@@ -157,7 +156,7 @@ var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, par
     Controller.SINGLETON_MSG = "Controller Singleton already constructed!";
 
     Controller.getInstance = function() {
-      return instance = instance || new Controller();
+      return instance != null ? instance : instance = new Controller();
     };
 
     return Controller;
@@ -206,7 +205,7 @@ var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, par
     Model.SINGLETON_MSG = "Model Singleton already constructed!";
 
     Model.getInstance = function() {
-      return instance = instance || new Model();
+      return instance != null ? instance : instance = new Model();
     };
 
     return Model;
@@ -307,7 +306,7 @@ var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, par
     View.SINGLETON_MSG = "View Singleton already constructed!";
 
     View.getInstance = function() {
-      return instance = instance || new View();
+      return instance != null ? instance : instance = new View();
     };
 
     return View;

@@ -24,6 +24,17 @@ MainWindow = ->
   
   win.add label;
   win
+  
+class MainMediator extends Puremvc.Mediator
+  listNotificationInterests: -> ["Hello"]
+  
+  handleNotification:(note)->
+    trace 'MainMediator got "Hello": ' + note
+
+  onRegister:->
+    trace 'Mediator onRegister.:' + @getMediatorName()
+    # get view component
+    @getViewComponent().open()
 
 class StartupCommand extends Puremvc.SimpleCommand
   execute:(note)->
@@ -36,17 +47,6 @@ class StartupCommand extends Puremvc.SimpleCommand
 class DemoProxy extends Puremvc.Proxy
   onRegister:->
     trace 'Proxy onRegister.:' + @getProxyName()
-    
-class MainMediator extends Puremvc.Mediator
-  listNotificationInterests: -> ["Hello"]
-  
-  handleNotification:(note)->
-    trace 'MainMediator got "Hello": ' + note
-
-  onRegister:->
-    trace 'Mediator onRegister.:' + @getMediatorName()
-    # get view component
-    @getViewComponent().open()
     
 
 setTimeout( ->
