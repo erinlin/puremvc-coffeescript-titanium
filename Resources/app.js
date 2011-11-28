@@ -1,97 +1,100 @@
-var DemoProxy, MainMediator, MainWindow, StartupCommand, trace;
-var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+(function() {
+  var DemoProxy, MainMediator, MainWindow, StartupCommand, trace;
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-Titanium.UI.setBackgroundColor('#000');
+  Titanium.UI.setBackgroundColor('#000');
 
-Ti.include("puremvc-coffee-1.0.js");
+  Ti.include("puremvc-coffee-1.0.js");
 
-trace = function(s) {
-  return Ti.API.info(s);
-};
-
-trace("Hello coffeescript with puremvc.");
-
-MainWindow = function() {
-  var label, win;
-  win = Ti.UI.createWindow({
-    title: 'Tab 1',
-    backgroundColor: '#fff'
-  });
-  label = Ti.UI.createLabel({
-    color: '#999',
-    text: 'Hello Coffeescript & Puremvc',
-    font: {
-      fontSize: '20dp',
-      fontFamily: 'Helvetica Neue'
-    },
-    textAlign: 'center',
-    width: 'auto'
-  });
-  win.add(label);
-  return win;
-};
-
-MainMediator = (function() {
-
-  __extends(MainMediator, Puremvc.Mediator);
-
-  function MainMediator() {
-    MainMediator.__super__.constructor.apply(this, arguments);
-  }
-
-  MainMediator.prototype.listNotificationInterests = function() {
-    return ["Hello"];
+  trace = function(s) {
+    return Ti.API.info(s);
   };
 
-  MainMediator.prototype.handleNotification = function(note) {
-    return trace('MainMediator got "Hello": ' + note);
+  trace("Hello coffeescript with puremvc.");
+
+  MainWindow = function() {
+    var label, win;
+    win = Ti.UI.createWindow({
+      title: 'Tab 1',
+      backgroundColor: '#fff'
+    });
+    label = Ti.UI.createLabel({
+      color: '#999',
+      text: 'Hello Coffeescript & Puremvc!!',
+      font: {
+        fontSize: '20dp',
+        fontFamily: 'Helvetica Neue'
+      },
+      textAlign: 'center',
+      width: 'auto'
+    });
+    win.add(label);
+    return win;
   };
 
-  MainMediator.prototype.onRegister = function() {
-    trace('Mediator onRegister.:' + this.getMediatorName());
-    return this.getViewComponent().open();
-  };
+  MainMediator = (function() {
 
-  return MainMediator;
+    __extends(MainMediator, Puremvc.Mediator);
 
-})();
+    function MainMediator() {
+      MainMediator.__super__.constructor.apply(this, arguments);
+    }
 
-StartupCommand = (function() {
+    MainMediator.prototype.listNotificationInterests = function() {
+      return ["Hello"];
+    };
 
-  __extends(StartupCommand, Puremvc.SimpleCommand);
+    MainMediator.prototype.handleNotification = function(note) {
+      return trace('MainMediator got "Hello": ' + note);
+    };
 
-  function StartupCommand() {
-    StartupCommand.__super__.constructor.apply(this, arguments);
-  }
+    MainMediator.prototype.onRegister = function() {
+      trace('Mediator onRegister.:' + this.getMediatorName());
+      return this.getViewComponent().open();
+    };
 
-  StartupCommand.prototype.execute = function(note) {
-    trace('startupCommand executed!!!');
-    this.facade.registerMediator(new MainMediator('MainMediator', new MainWindow()));
-    return this.sendNotification("Hello");
-  };
+    return MainMediator;
 
-  return StartupCommand;
+  })();
 
-})();
+  StartupCommand = (function() {
 
-DemoProxy = (function() {
+    __extends(StartupCommand, Puremvc.SimpleCommand);
 
-  __extends(DemoProxy, Puremvc.Proxy);
+    function StartupCommand() {
+      StartupCommand.__super__.constructor.apply(this, arguments);
+    }
 
-  function DemoProxy() {
-    DemoProxy.__super__.constructor.apply(this, arguments);
-  }
+    StartupCommand.prototype.execute = function(note) {
+      trace('startupCommand executed!!!');
+      this.facade.registerMediator(new MainMediator('MainMediator', new MainWindow()));
+      return this.sendNotification("Hello");
+    };
 
-  DemoProxy.prototype.onRegister = function() {
-    return trace('Proxy onRegister.:' + this.getProxyName());
-  };
+    return StartupCommand;
 
-  return DemoProxy;
+  })();
 
-})();
+  DemoProxy = (function() {
 
-setTimeout(function() {
-  Puremvc.facade.registerCommand('startup', StartupCommand);
-  Puremvc.facade.registerProxy(new DemoProxy('DemoProxy'));
-  return Puremvc.facade.sendNotification('startup');
-}, 200);
+    __extends(DemoProxy, Puremvc.Proxy);
+
+    function DemoProxy() {
+      DemoProxy.__super__.constructor.apply(this, arguments);
+    }
+
+    DemoProxy.prototype.onRegister = function() {
+      return trace('Proxy onRegister.:' + this.getProxyName());
+    };
+
+    return DemoProxy;
+
+  })();
+
+  setTimeout(function() {
+    Puremvc.facade.registerCommand('startup', StartupCommand);
+    Puremvc.facade.registerProxy(new DemoProxy('DemoProxy'));
+    return Puremvc.facade.sendNotification('startup');
+  }, 200);
+
+}).call(this);

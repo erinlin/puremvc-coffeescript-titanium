@@ -7,3 +7,5 @@ build.log
 CHANGELOG.txt
 LICENSE
 manifest
+Resources/android
+Resources/iphone
