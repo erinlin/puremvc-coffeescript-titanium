@@ -27,6 +27,6 @@ How to use:
 
 1. Make sure CoffeeScript has installed. for more information please check the CoffeeScript official website : http://jashkenas.github.com/coffee-script/
 
-2. Setup CoffeeScript for Titanium plug-in : https://github.com/billdawson/ti_coffee_plugin
+2. You can setup CoffeeScript for Titanium plug-in : https://github.com/billdawson/ti_coffee_plugin or just use CoffeeScript bundle in Titanium Studio 'commands' to compile and display JS.
 
 3. Enjoy it.
